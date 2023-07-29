@@ -2,31 +2,43 @@ class Solution {
 public:
     vector<vector<int>> fourSum(vector<int>& nums, int target) 
     {
-        int n = nums.size();
-        sort(nums.begin(), nums.end());
-        set<vector<int>> set;
-        vector<vector<int>> output;
-        for(int i=0; i<n-3; i++){
-            for(int j=i+1; j<n-2; j++){
-                long long newTarget = (long long)target - (long long)nums[i] - (long long)nums[j];
-                int low = j+1, high = n-1;
-                while(low < high){
-                    if(nums[low] + nums[high] < newTarget){
-                        low++;
+        sort(nums.begin(),nums.end());
+        long long int sum,sum2,k,l;
+        long long int tar = target;
+        set<vector<int>> ans;
+
+        for(int i=0; i<nums.size(); i++)
+        {
+            for(int j=i+1; j<nums.size(); j++)
+            {
+                k=j+1;
+                l=nums.size()-1;
+                sum=nums[i]+nums[j];
+
+                while(k<l)
+                {
+                    sum2=nums[k]+nums[l];
+                    if(sum2+sum == tar)
+                    {
+                        ans.insert({nums[i],nums[j],nums[k],nums[l]});
+                        k++;
+                        l--;
                     }
-                    else if(nums[low] + nums[high] > newTarget){
-                        high--;
+                    else if(sum2+sum > tar)
+                    {
+                        l--;
                     }
                     else{
-                        set.insert({nums[i], nums[j], nums[low], nums[high]});
-                        low++; high--;
+                        k++;
                     }
                 }
             }
         }
-        for(auto it : set){
-            output.push_back(it);
+        vector<vector<int>> an;
+        for(auto it:ans)
+        {
+            an.push_back(it);
         }
-        return output;
+        return an;
     }
 };
