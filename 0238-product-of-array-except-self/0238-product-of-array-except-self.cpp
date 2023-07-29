@@ -2,53 +2,25 @@ class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) 
     {
-        int zeroes = 0 , product=nums[0] , j=1;
+        vector<int> pre,post;
+        pre.push_back(nums[0]);
+        post.push_back(nums[nums.size()-1]);
+        int s = nums.size()-1;
 
-        if(nums[0]==0)
+        for(int i=1; i<nums.size(); i++)
         {
-            product=nums[1];
-            zeroes++;
-            j=2;
+            pre.push_back(nums[i]*pre[i-1]);
+            post.push_back(nums[s-i]*post[i-1]);
+            cout << pre[pre.size()-1] << " " << post[post.size()-1] << " ";
         }
+         reverse(post.begin(), post.end());
 
-        for(int i=j; i<nums.size(); i++)
+        nums[0]=post[1];
+        nums[s]=pre[s-1];
+        for(int i=1; i<s; i++)
         {
-            if(nums[i]==0)
-            {
-                zeroes++;
-            }
-            else{
-                product*=nums[i];
-            }
+            nums[i]=pre[i-1]*post[i+1];
         }
-
-        if(zeroes>=2)
-        {
-            vector<int> x(nums.size(),0);
-            return x;
-        }
-        vector<int> ans;
-
-        if(zeroes==1)
-        {
-            for(int i=0; i<nums.size(); i++)
-            {
-                if(nums[i]==0)
-                {
-                    ans.push_back(product);
-                }
-                else{
-                    ans.push_back(0);
-                }
-            }
-        }
-        else{
-            for(int i=0; i<nums.size(); i++)
-            {
-                ans.push_back(product/nums[i]);
-            }
-        }
-
-        return ans;
+        return nums;
     }
 };
