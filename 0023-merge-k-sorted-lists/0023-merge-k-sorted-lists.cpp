@@ -10,45 +10,43 @@
  */
 class Solution {
 public:
-    ListNode* mergeKLists(vector<ListNode*>& v) 
-    {
-
-        if(v.size() == 1)return v[0];
-        if(v.size() == 0)return nullptr;
-
-        ListNode* dummy=new ListNode(0);
-        ListNode* ans = dummy;
-        int flag=0;
-
-        while(true)
-        {
-            int mini = 100000;
-            int x;
-            for(int i=0; i<v.size(); i++)
-            {
-                if(v[i]!=NULL)
-                {
-                    if(v[i]->val < mini)
-                    {
-                        x = i;
-                        mini = v[i]->val;
-                    }
-                    flag=1;
-                }
-                
-            }
-            if(flag==0)
-            {
-                break;
-            }
-            flag=0;
-
-            ans->next=v[x];
-            ans=ans->next;
-            v[x] = v[x]->next;
+    ListNode* mergeTwolists(ListNode* l1,ListNode* l2){
+        if(!l1)return l2;
+        if(!l2)return l1;
+        ListNode* first = new ListNode(1);
+        ListNode* temp = first;
+        while(l1 and l2){
+           if(l1->val < l2->val){
+               first->next = l1;
+               l1 = l1->next;
+           }else{
+               first->next = l2;
+               l2 = l2->next;
+           }
+           first = first->next;
         }
-
-        ListNode* result=dummy->next;
-        return result;
+        while(l1){
+         first->next = l1;
+         first = first->next;
+         l1 = l1->next;
+        }
+        while(l2){
+           first->next = l2;
+            first = first->next;
+           l2 = l2->next;
+        }
+        return temp->next;
+    }
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+       
+        if(lists.size() == 1)return lists[0];
+        if(lists.size() == 0)return nullptr;
+        
+        ListNode* ans = mergeTwolists(lists[1],lists[0]);
+        for(int i = 2;i<lists.size();i++){
+           
+            ans = mergeTwolists(lists[i],ans);
+        }
+        return ans;
     }
 };
