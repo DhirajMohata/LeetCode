@@ -22,7 +22,7 @@ public:
 
         while(list1 &&  list2)
         {
-            if(list1 -> val < list2 -> val)
+            if(list1->val < list2->val)
             {
                 ans->next=list1;
                 ans=ans->next;
@@ -39,16 +39,14 @@ public:
 
         while(list1!=nullptr)
         {
-            ListNode* temp = new ListNode(list1->val);
-            ans->next=temp;
+            ans->next=list1;
             ans=ans->next;
             list1 = list1->next;
         }
 
         while(list2!=nullptr)
         {
-            ListNode* temp = new ListNode(list2->val);
-            ans->next=temp;
+            ans->next=list2;
             ans=ans->next;
             list2 = list2->next;
         }
