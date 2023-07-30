@@ -10,43 +10,29 @@
  */
 class Solution {
 public:
-    ListNode* mergeTwolists(ListNode* l1,ListNode* l2){
-        if(!l1)return l2;
-        if(!l2)return l1;
-        ListNode* first = new ListNode(1);
-        ListNode* temp = first;
-        while(l1 and l2){
-           if(l1->val < l2->val){
-               first->next = l1;
-               l1 = l1->next;
-           }else{
-               first->next = l2;
-               l2 = l2->next;
-           }
-           first = first->next;
-        }
-        while(l1){
-         first->next = l1;
-         first = first->next;
-         l1 = l1->next;
-        }
-        while(l2){
-           first->next = l2;
-            first = first->next;
-           l2 = l2->next;
-        }
-        return temp->next;
-    }
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-       
-        if(lists.size() == 1)return lists[0];
-        if(lists.size() == 0)return nullptr;
-        
-        ListNode* ans = mergeTwolists(lists[1],lists[0]);
-        for(int i = 2;i<lists.size();i++){
-           
-            ans = mergeTwolists(lists[i],ans);
+        // Approach: Merge lists two by two
+        int k = lists.size();
+        if (k == 0) return nullptr;
+        while (k > 1) {
+            int mid = (k + 1) / 2;
+            for (int i = 0; i < k / 2; i++) {
+                lists[i] = mergeTwoLists(lists[i], lists[i + mid]);
+            }
+            k = mid;
         }
-        return ans;
+        return lists[0];
+    }
+
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        if (!l1) return l2;
+        if (!l2) return l1;
+        if (l1->val < l2->val) {
+            l1->next = mergeTwoLists(l1->next, l2);
+            return l1;
+        } else {
+            l2->next = mergeTwoLists(l1, l2->next);
+            return l2;
+        }
     }
 };
