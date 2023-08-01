@@ -22,6 +22,7 @@ public:
         ListNode* prevPoint=head;
         ListNode* startPoint=head;
 
+        //if First element is greater then targer then we have to find the first smaller value then it and make it the first value of thr list
         if(head->val>=target)
         {
             startPoint = head;
@@ -44,6 +45,7 @@ public:
         }
         else
         {
+            // else we have to find the first greater or equal value
             head = head->next;
             while(head->val<target && head)
             {
@@ -60,6 +62,7 @@ public:
         
         while(head)
         {
+            //if greater or equal value we move to next else we move the element just before the first greater value
             if(head->val < target)
             {
                 point->next = head->next;
