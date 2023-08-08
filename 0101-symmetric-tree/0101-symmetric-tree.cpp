@@ -1,40 +1,42 @@
 class Solution {
 public:
-    bool check(TreeNode* leftR,TreeNode* rightR){
-        if(leftR==NULL && rightR==NULL){
+    bool check(TreeNode* leftR,TreeNode* rightR)
+    {
+        if(leftR==NULL && rightR==NULL)
+        {
             return true;
-        }else if(leftR==NULL){
-            return false;
-        }else if(rightR==NULL){
+        }
+
+        if(leftR==NULL || rightR==NULL)
+        {
             return false;
         }
+
         bool ans1=false,ans2=false;
-        if(leftR->val==rightR->val){
+
+        if(leftR->val==rightR->val)
+        {
             ans1=check(leftR->left,rightR->right);
         }
-        if(leftR->val==rightR->val){
+
+        if(leftR->val==rightR->val)
+        {
             ans2=check(leftR->right,rightR->left);
         }
-        if(ans1 && ans2){
+
+        if(ans1 && ans2)
             return true;
-        }else{
-            return false;
-        }
+
+        return false;
     }
     
-    bool isSymmetric(TreeNode* root) {
-        if(root==NULL){
+    bool isSymmetric(TreeNode* root) 
+    {
+        if(root==NULL)
+        {
             return true;
         }
-        if(root->left==NULL && root->right==NULL){
-            return true;
-        }
-        if(root->left==NULL || root->right==NULL){
-            return false;
-        }
-        if(root->left->val==root->right->val){
-            return check(root->left,root->right);
-        }
-        return 0;
+
+        return check(root->left,root->right);
     }
 };
