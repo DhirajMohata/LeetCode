@@ -1,15 +1,36 @@
 class Solution {
 public:
-    int findKthLargest(vector<int>& nums, int k) 
-    {
-        priority_queue<int , vector<int> , greater<int>> q;
+    int findKthLargest(vector<int>& nums, int k) {
+        if(nums.size() == 1)
+        {
+            return nums[0];
+        }
 
-        for(int i=0; i<nums.size(); i++)
-            q.push(nums[i]);
+        priority_queue<int,vector<int>,greater<int>> mnheap;
 
-        for(int i=k; i<nums.size(); i++)
-            q.pop();
+        //push the k elements in the min heap
+       
+        for( int i = 0; i < k ; i ++)
+        {
+            int element = nums[i];
+            mnheap.push(element);
+        }
+         // traverse the rest
+        for(int i = k; i < nums.size() ; i ++)
+        {
+            int element = nums[i];
+        // if larger then pop heap and insert it
+            if(element > mnheap.top())
+            {
+                mnheap.pop();
+                mnheap.push(element);
+            }
+        }
+        // the top element is the ans.
+        int ans = mnheap.top();
+        return ans;
 
-        return q.top();
+       
+        
     }
 };
