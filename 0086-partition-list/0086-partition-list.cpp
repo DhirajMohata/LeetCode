@@ -10,75 +10,54 @@
  */
 class Solution {
 public:
-    ListNode* partition(ListNode* head, int target) 
+    ListNode* partition(ListNode* head, int x) 
     {
-        if(head==NULL || head->next==NULL)
-        {
-            cout << "x" << " ";
+        if(head == NULL || head->next == NULL)
             return head;
-        }
-        ListNode* ans = head;
-        ListNode* point=head;
-        ListNode* prevPoint=head;
-        ListNode* startPoint=head;
+        ListNode* start = NULL;
+        ListNode* s = NULL;
+        ListNode* end = NULL;
+        ListNode* e = NULL;
 
-        //if First element is greater then targer then we have to find the first smaller value then it and make it the first value of thr list
-        if(head->val>=target)
-        {
-            startPoint = head;
-            ListNode* temp=head;
-            temp = temp->next;
-            while(temp && temp->val>=target)
-            {
-                point = temp;
-                if(temp->next==NULL)
-                    return ans;
-                temp=temp->next;
-            }
-
-            point->next = temp->next;
-            temp->next = startPoint;
-            prevPoint = temp;
-            ans = temp;
-            head = point->next;
-
-        }
-        else
-        {
-            // else we have to find the first greater or equal value
-            head = head->next;
-            while(head->val<target && head)
-            {
-                prevPoint=prevPoint->next;
-                if(head->next==NULL)
-                    return point;
-                head = head->next;
-            }
-
-            startPoint = head;
-            point = head;
-            head = head->next;
-        }
-        
         while(head)
         {
-            //if greater or equal value we move to next else we move the element just before the first greater value
-            if(head->val < target)
+            ListNode* temp = new ListNode(head->val);
+            if(head->val<x)
             {
-                point->next = head->next;
-                head->next = startPoint;
-                prevPoint->next = head;
-                prevPoint = prevPoint->next;
-                head = point->next;
+                if(start==NULL)
+                {
+                    start=temp;
+                    s = start;
+                }
+                else
+                {
+                    start->next=temp;
+                    start = start->next;
+                }
+                cout << start->val << " l " ;
             }
             else
             {
-                cout << head->val << " ";
-                point = head;
-                head = head->next;
+                if(end==NULL)
+                {
+                    end=temp;
+                    e = end;
+                }
+                else
+                {
+                    end->next=temp;
+                    end = end->next;
+                }
+                cout << end->val << " e ";
             }
+            head = head->next;
         }
 
-        return ans;
+        if(s==NULL)
+            return e;
+
+        start->next = e;
+
+        return s;
     }
 };
