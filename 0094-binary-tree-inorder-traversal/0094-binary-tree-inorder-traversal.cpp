@@ -25,7 +25,9 @@ public:
             }
             else
             {
-                if(s.empty()==true)break;
+                if(s.empty()==true)
+                    break;
+                    
                 root = s.top();
                 s.pop();
                 ans.push_back(root->val);
