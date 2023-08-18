@@ -8,7 +8,7 @@ public:
 
         for(int i=0; i<roads.size(); i++)
         {
-            m1[{roads[i][0],roads[i][1]}]++;
+            m1[{roads[i][0],roads[i][1]}]=1;
             m2[roads[i][0]]++;
             m2[roads[i][1]]++;
         }
