@@ -1,28 +1,27 @@
 class Solution {
 public:
-    int maximalNetworkRank(int n, vector<vector<int>>& roads) 
-    {
-        map<pair<int,int>,int> m1;
-        vector<int> m2(n,0);
-        int ans=0;
+    int maximalNetworkRank(int n, vector<vector<int>>& roads) {
+        
+        int maxRank = 0;
+        unordered_map<int, unordered_set<int>> adj;
 
-        for(int i=0; i<roads.size(); i++)
-        {
-            m1[{roads[i][0],roads[i][1]}]=1;
-            m2[roads[i][0]]++;
-            m2[roads[i][1]]++;
+        for(auto& road : roads){
+            adj[road[0]].insert(road[1]);
+            adj[road[1]].insert(road[0]);
         }
 
-
-        for(int i=0; i<n; i++)
-        {
-            for(int j=i+1; j<n; j++)
-            {
-                int c = m2[i]+m2[j]; 
-                c-=m1[{i,j}]+m1[{j,i}];
-                ans = max(ans,c);
+        for (int node1 = 0; node1 < n; ++node1) {
+            for (int node2 = node1 + 1; node2 < n; ++node2) {
+                int currentRank = adj[node1].size() + adj[node2].size();
+                if (adj[node1].find(node2) != adj[node1].end()) {
+                    --currentRank;
+                }
+                
+                maxRank = max(maxRank, currentRank);
             }
-        }
-        return ans;
+        } 
+
+        return maxRank;       
+
     }
 };
