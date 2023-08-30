@@ -1,20 +1,28 @@
 class Solution {
 public:
-    long long minimumReplacement(vector<int>& v) {
-        long long ans = 0;
-        long long Maxmin = v[v.size()-1];
-        
-        for(int i=v.size()-2;i>=0;i--)
+    long long minimumReplacement(vector<int>& nums) 
+    {
+        int n = nums.size();
+        int last = nums[n-1];  // Initialize 'last' with the last element
+        long long ans = 0;     // Initialize the total operations count
+
+        // Traverse the array in reverse order
+        for (int i = n - 2; i >= 0; --i) 
         {
-            if(v[i]>Maxmin)
-            {
-                int partition = ceil(v[i]/double(Maxmin));
-                ans += partition - 1;
-                Maxmin = v[i]/partition;
-            }
+            if (nums[i] > last) 
+            {  // If the current element needs replacement
+                int t = nums[i] / last;  // Calculate how many times the element needs to be divided
+                if (nums[i] % last) 
+                    t++; // If there's a remainder, increment 't'
+                last = nums[i] / t;  // Update 'last' for the next comparison
+                ans += t - 1; // Add (t - 1) to 'ans' for the number of operations
+            } 
             else 
-                Maxmin = v[i];
+            {
+                last = nums[i]; // Update 'last' without replacement
+            }
         }
-        return ans;
+        return ans; // Return the total number of operations
     }
+
 };
