@@ -14,12 +14,8 @@ public:
         if(dp[m][n] != -1)
             return dp[m][n];
 
-        int count = 0;
-        count += solve(m-1,n,dp);
-        count += solve(m,n-1,dp);
-
-        dp[m][n] = count;
-        return count;
+        dp[m][n] = solve(m-1,n,dp) + solve(m,n-1,dp);
+        return dp[m][n];
     }
     int uniquePaths(int m, int n) 
     {
