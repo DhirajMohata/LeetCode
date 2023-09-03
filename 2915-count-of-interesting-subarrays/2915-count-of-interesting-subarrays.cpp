@@ -6,20 +6,17 @@ public:
         unordered_map<int,int> m;
         long long ans=0;
         
-        for(int i=0; i<nums.size(); i++)
+        if(nums[0]%mod==k)v[0]++;
+
+        for(int i=1; i<nums.size(); i++)
         {
             if(nums[i]%mod==k)
-            {
-                if(i!=0)
-                    v[i] = v[i] + v[i-1];
                 v[i]++;
-            }
-            else
-            {
-                if(i!=0)
-                    v[i] = v[i] + v[i-1];
-            }
-            
+            v[i] = v[i] + v[i-1];
+        }
+
+        for(int i=0; i<nums.size(); i++)
+        {
             if(v[i]%mod==k)
                 ans++;
             
