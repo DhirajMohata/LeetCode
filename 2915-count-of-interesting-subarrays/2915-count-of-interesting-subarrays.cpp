@@ -3,7 +3,7 @@ public:
     long long countInterestingSubarrays(vector<int>& nums, int mod, int k) 
     {
         vector<int> v(nums.size(),0);
-        map<int,int> m;
+        unordered_map<int,int> m;
         long long ans=0;
         
         for(int i=0; i<nums.size(); i++)
