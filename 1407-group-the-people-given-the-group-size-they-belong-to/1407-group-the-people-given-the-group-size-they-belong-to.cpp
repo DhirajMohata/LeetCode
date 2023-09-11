@@ -3,27 +3,28 @@ public:
     vector<vector<int>> groupThePeople(vector<int>& nums) 
     {
         vector<vector<int>> ans;
-        vector<pair<int,int>> temp;
+        unordered_map<int,vector<int>> temp;
 
         for(int i=0; i<nums.size(); i++)
         {
-            temp.push_back({nums[i],i});
+            temp[nums[i]].push_back(i);
         }
 
-        sort(temp.begin(),temp.end());
-
-        for(int i=0; i<nums.size(); i++)
+        for(auto [val,key] : temp)
         {
-            vector<int> te;
-            int x = temp[i].first;
-
-            while(x--)
+            
+            for(int i=0; i<key.size(); i++)
             {
-                te.push_back(temp[i].second);
-                i++;
+                vector<int> te;
+                int x = val;
+                while(x--)
+                {
+                    te.push_back(key[i]);
+                    i++;
+                }
+                ans.push_back(te);
+                i--;
             }
-            ans.push_back(te);
-            i--;
         }
         return ans;
     }
