@@ -33,7 +33,6 @@ public:
                     x--;
                 }
                 freq[val]--;
-                cout << ans << " " << freq[val] << " " << val << "  ";
             }
         }
 
