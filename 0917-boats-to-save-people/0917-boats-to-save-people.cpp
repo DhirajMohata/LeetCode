@@ -7,17 +7,14 @@ public:
 
         while(i<=j)
         {
-            if(nums[i]+nums[j]<=limit)
-            {
-                ans++;
+            if(nums[i]+nums[j]>limit)
                 j--;
-                i++;
-            }
             else
             {
-                ans++;
+                i++;
                 j--;
             }
+            ans++;
         }
         return ans;
     }
