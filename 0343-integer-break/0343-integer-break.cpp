@@ -1,28 +1,42 @@
 class Solution {
 public:
-    int integerBreak(int n) 
-    {
-        vector<int> dp(n+1,1);
-        dp[1] = 1;
-
-        for(int i=2; i<=n; i++)
+    int integerBreak(int n) {
+        int dp[n][n+1];
+		for(int i=1;i<n;i++)
         {
-            int x = n/i , temp = 1;
-            int y = n%i;
-
-            for(int j=0; j<i; j++)
+			for(int j=0;j<=n;j++)
             {
-                if(y)
-                {
-                    temp *= x+1;
-                    y--;
-                }
+                if(i==1)
+                    dp[1][j]=1;
                 else
-                    temp *= x;
-            }
+                {
+                    dp[i][j]=dp[i-1][j];
+                    if(j>=i) 
+                        dp[i][j]=max(dp[i][j],i*dp[i][j-i]);
+                }
+			}
+		}
 
-            dp[i] = max(dp[i-1], temp);
-        }    
-        return dp[n];
+        cout<<"      ";
+        for(int j2=0;j2<=n;j2++)
+            cout<<j2<<" ";
+        cout<<endl;
+        for(int i2=1;i2<n;i2++)
+        {
+            int fl=1;
+            for(int j2=0;j2<=n;j2++)
+            {
+                if(fl)
+                {
+                    cout<<i2<<" --> ";
+                    fl=0;
+                }
+                cout<<dp[i2][j2]<<" ";
+            }
+            cout<<endl;
+        }
+
+
+		return dp[n-1][n];
     }
 };
