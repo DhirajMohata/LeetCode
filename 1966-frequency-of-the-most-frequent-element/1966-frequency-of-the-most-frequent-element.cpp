@@ -11,16 +11,15 @@ public:
             while(i<j)
             {
                 long long x = (j-i)*nums[j] - sum;
-                if(x<=k)
+                if(x>k)
                 {
-                    ans = max(ans , j-i+1);
-                    cout << ans << " ";
-                    break;
+                    sum -= nums[i];
+                    i++;   
                 }
                 else
                 {
-                    sum -= nums[i];
-                    i++;
+                    ans = max(ans , j-i+1);
+                    break;
                 }
             }
             sum += nums[j];
