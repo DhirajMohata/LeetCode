@@ -4,17 +4,26 @@ public:
     {
         sort(nums.begin(),nums.end());
 
-        long long sum = 0 , i = 0 , j = 0 , ans = 1;
+        long long sum = nums[0] , i = 0 , j = 1 , ans = 1;
 
         while(j<nums.size())
         {
-            sum += nums[j];
-            while((j-i+1)*nums[j] - sum > k)
+            while(i<j)
             {
-                sum -= nums[i];
-                i++;
+                long long x = (j-i)*nums[j] - sum;
+                if(x<=k)
+                {
+                    ans = max(ans , j-i+1);
+                    cout << ans << " ";
+                    break;
+                }
+                else
+                {
+                    sum -= nums[i];
+                    i++;
+                }
             }
-            ans = max(ans , j-i+1);
+            sum += nums[j];
             j++;
         }
 
