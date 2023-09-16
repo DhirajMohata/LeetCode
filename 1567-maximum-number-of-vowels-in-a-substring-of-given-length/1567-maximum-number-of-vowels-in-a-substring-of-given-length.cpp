@@ -17,17 +17,15 @@ public:
                 x++;
         }
         ans = max(ans , x);
-        int i=0;
 
         for(int j=k; j<s.size(); j++)
         {
             if(m[s[j]]==1)
                 x++;
-            if(m[s[i]]==1)
+            if(m[s[j-k]]==1)
                 x--;
 
             ans = max(ans,x);
-            i++;
         }
 
         return ans;
