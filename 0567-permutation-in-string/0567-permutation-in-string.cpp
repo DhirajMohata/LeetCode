@@ -2,36 +2,55 @@ class Solution {
 public:
     bool checkInclusion(string s1, string s2) 
     {
-        if (s1.size() > s2.size()) 
-            return false;
+        vector<int> m(26,0);
+        vector<int> c(26,0);
+        vector<int> x(26,0);
 
-        vector<int> s1v (26, 0);
-        
-        for (auto c : s1) s1v[c - 'a']++;
 
-        vector<int> s2v (26, 0);
+        for(int i=0; i<s1.size(); i++)
+            m[s1[i]-'a']++;
 
-        int l = 0, r = 0;
+        int j = 0 , y = 0;
 
-        while (r < s2.size()) 
+        for(int i=0; i<s2.size(); i++)
         {
-            s2v[s2[r]-'a']++;
+            if(m[s2[i]-'a']!=x[s2[i]-'a'])
+            {
+                if(y==0)
+                    j=i;
 
-            if (r - l + 1 == s1.size()) 
-            {
-                if (s1v == s2v) 
-                    return true;
+                x[s2[i]-'a']++;
+                y++;
             }
-                
-            if (r - l + 1 < s1.size())
-                r++;
-            else 
+            else
             {
-                s2v[s2[l]-'a']--;
-                l++;
-                r++;
+                if(x==m)
+                    return true;
+
+                if(m[s2[i]-'a']==0 || y==0)
+                {
+                    x=c;
+                    y=0;
+                }
+                else
+                {
+                    while(j<=i)
+                    {
+                        if(s2[i]==s2[j])
+                        {
+                            j++;
+                            break;
+                        }
+                        x[s2[j]-'a']--;
+                        j++;
+                    }
+                }
             }
         }
+
+        if(x==m)
+            return true;
+
         return false;
     }
 };
