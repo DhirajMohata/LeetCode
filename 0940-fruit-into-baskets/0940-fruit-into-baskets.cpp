@@ -26,7 +26,6 @@ public:
             {
                 ans = max(ans,j-i+1);
 
-                cout << ans << " " << i << " " << j << " s ";
                 if(nums[j]==u)
                 {
                     x = j;
@@ -35,9 +34,6 @@ public:
                 {
                     y = j;
                 }
-
-                cout << x << " " << y << " x " ;
-
             }
             else
             {
