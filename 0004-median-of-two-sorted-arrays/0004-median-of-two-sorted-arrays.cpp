@@ -25,8 +25,8 @@ public:
                         }
                         else
                         {
-                                ans += nums2[j];
-                                return ans/2;
+                            ans += nums2[j];
+                            return ans/2;
                         }
                     }
                 }
@@ -43,8 +43,8 @@ public:
                             }
                             else
                             {
-                                    ans += nums2[j];
-                                    return ans/2;
+                                ans += nums2[j];
+                                return ans/2;
                             }
                         }
                 }
@@ -66,12 +66,12 @@ public:
                 }    
                 else
                 {
-                        j++;
-                        if(x==(n+1)/2)
-                        {
-                            ans+=nums2[j-1];
-                            return ans;
-                        }
+                    j++;
+                    if(x==(n+1)/2)
+                    {
+                        ans+=nums2[j-1];
+                        return ans;
+                    }
                 }
              } 
         } 
