@@ -13,10 +13,9 @@ public:
 
         for(int i=0; i<nums.size(); i++)
         {
-            string temp = nums[i];
-
             for(int j=0; j<nums[i].size(); j++)
             {
+                string temp = nums[i];
                 temp.erase(j,1);
 
                 if(m[temp]>=1)
@@ -24,13 +23,12 @@ public:
                     m[nums[i]] = max(m[nums[i]] , m[temp]+1);
                     flag = 1;
                 }
-                temp = nums[i];
-
             }
             if(flag == 0)
                 m[nums[i]]=1;
             else
                 flag = 0;
+
         }
 
         int ans = 1;
