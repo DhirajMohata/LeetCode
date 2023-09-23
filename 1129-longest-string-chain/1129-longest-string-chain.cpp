@@ -6,7 +6,7 @@ public:
     }
     int longestStrChain(vector<string>& nums) 
     {
-        map<string,int> m;
+        unordered_map<string,int> m;
         int flag = 0;
 
         sort(nums.begin(),nums.end() , cmp);
@@ -31,7 +31,7 @@ public:
                 m[nums[i]]=1;
             else
                 flag = 0;
-                
+
             cout << endl;
         }
 
