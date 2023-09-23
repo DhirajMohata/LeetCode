@@ -18,7 +18,7 @@ public:
             for(int j=0; j<nums[i].size(); j++)
             {
                 temp.erase(j,1);
-                cout << temp << " ";
+
                 if(m[temp]>=1)
                 {
                     m[nums[i]] = max(m[nums[i]] , m[temp]+1);
@@ -31,8 +31,6 @@ public:
                 m[nums[i]]=1;
             else
                 flag = 0;
-
-            cout << endl;
         }
 
         int ans = 1;
