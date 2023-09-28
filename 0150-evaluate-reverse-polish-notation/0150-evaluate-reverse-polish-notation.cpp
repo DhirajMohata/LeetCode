@@ -42,7 +42,6 @@ public:
             {
                 s.push(stoi(nums[i]));
             }
-            cout << s.top() << " ";
         }    
 
         return s.top();
