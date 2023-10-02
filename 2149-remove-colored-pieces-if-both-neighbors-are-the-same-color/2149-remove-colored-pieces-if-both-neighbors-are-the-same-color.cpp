@@ -27,9 +27,6 @@ public:
         a += max(tempa-2 , 0);
         b += max(tempb-2 , 0);
 
-        if(a>b)
-            return true;
-        else
-            return false;
+        return a>b;
     }
 };
