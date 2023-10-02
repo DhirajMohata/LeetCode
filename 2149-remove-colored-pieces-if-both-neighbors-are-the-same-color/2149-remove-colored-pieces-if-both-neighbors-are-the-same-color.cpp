@@ -8,9 +8,7 @@ public:
         for(int i=0; i<nums.size(); i++)
         {
             if(nums[i]=='A')
-            {
                 tempa++;
-            }
             else
             {
                 a += max(tempa-2 , 0);
@@ -18,9 +16,7 @@ public:
             }
 
             if(nums[i]=='B')
-            {
                 tempb++;
-            }
             else
             {
                 b += max(tempb-2 , 0);
