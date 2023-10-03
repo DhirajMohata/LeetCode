@@ -22,7 +22,7 @@ public:
             y = max(y , nums1[i+1] - nums1[i]);
         }
 
-        long long ans = (long long)x*(long long)y;
+        long ans = (long)x*(long)y;
         ans = ans % 1000000007;
 
         return (int)ans;
