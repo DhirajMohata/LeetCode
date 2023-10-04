@@ -2,8 +2,8 @@ class MyHashMap {
 public:
     vector<int> m;
     MyHashMap() {
-        for(int i=0; i<=1000000; i++)
-            m.push_back(-1);
+        vector<int> x(1000001,-1);
+        m = x;
     }
     
     void put(int key, int value) {
