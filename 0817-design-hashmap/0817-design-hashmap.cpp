@@ -1,37 +1,21 @@
 class MyHashMap {
-private:
-    std::vector<std::pair<int, int>> map;
-
 public:
+    vector<int> m;
     MyHashMap() {
-        
+        for(int i=0; i<=1000000; i++)
+            m.push_back(-1);
     }
     
     void put(int key, int value) {
-        for (auto& pair : map) {
-            if (pair.first == key) {
-                pair.second = value; 
-                return;
-            }
-        }
-        map.push_back(std::make_pair(key, value)); 
+        m[key] = value;
     }
     
-    int get(int key) {
-        for (const auto& pair : map) {
-            if (pair.first == key) {
-                return pair.second; 
-            }
-        }
-        return -1; 
+    int get(int key) 
+    {
+        return m[key]; 
     }
     
     void remove(int key) {
-        for (auto it = map.begin(); it != map.end(); ++it) {
-            if (it->first == key) {
-                map.erase(it); 
-                return;
-            }
-        }
+        m[key] = -1;
     }
 };
