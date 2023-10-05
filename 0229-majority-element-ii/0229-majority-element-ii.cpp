@@ -2,20 +2,42 @@ class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) 
     {
-        int x = nums.size()/3;
+        int candidate1 = 0, candidate2 = 1, count1 = 0, count2 = 0;
 
-        unordered_map<int,int> m;
-
-        for(int i=0; i<nums.size(); i++)
-            m[nums[i]]++;
-
-        vector<int> ans;
-        for(auto [key,val] : m)
+        for (int num : nums) 
         {
-            if(val>x)
-                ans.push_back(key);
-        }    
+            if (num == candidate1) 
+            {
+                count1++;
+            } 
+            else if (num == candidate2) 
+            {
+                count2++;
+            }
+            else if (count1 == 0) 
+            {
+                candidate1 = num;
+                count1 = 1;
+            } 
+            else if (count2 == 0) 
+            {
+                candidate2 = num;
+                count2 = 1;
+            } 
+            else 
+            {
+                count1--;
+                count2--;
+            }
+        }
+        
+        vector<int> result;
+        if (count(nums.begin(), nums.end(), candidate1) > nums.size() / 3) 
+            result.push_back(candidate1);
 
-        return ans;
+        if (count(nums.begin(), nums.end(), candidate2) > nums.size() / 3) 
+            result.push_back(candidate2);
+
+        return result;
     }
 };
