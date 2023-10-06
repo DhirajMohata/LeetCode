@@ -17,11 +17,17 @@ public:
     {
         if(root == NULL)
             return;
-
+        if(k+1 == x)
+            return;
+            
         solve(root->left , k);
         x++;
         if(k == x)
+        {
             ans = root->val;
+            x++;
+            return;
+        }
         solve(root->right , k);
     }
     int kthSmallest(TreeNode* root, int k) 
