@@ -18,9 +18,9 @@ public:
         if(nums.size()==0)
             return 0;
 
-        vector<int> dp(nums.size()+2,10000000);
+        vector<int> dp(nums.size()+1,10000000);
         dp[0]=0;
-        
+
         for(int i=1; i<=nums.size(); i++)
         {
             dp[i] = dp[i-1]+x;
