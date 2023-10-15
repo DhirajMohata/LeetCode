@@ -2,27 +2,28 @@ class Solution {
 public:
     vector<int> findIndices(vector<int>& nums, int index, int value) 
     {
-        set<pair<int,int>> s;
+        int maxi = nums[0] , mini = nums[0] , x = 0 , y = 0;
         
         for(int i=index; i<nums.size(); i++)
         {
-            s.insert({nums[i-index],i-index});
-            auto it =  s.begin();
-            auto it1 = s.end();
-            it1--;
-            
-            pair<int,int> x = *it, y=*it1;
-            
-            if(abs(x.first-nums[i])>=value)
+            if(nums[i-index]>maxi)
             {
-                cout << endl;
-                return {x.second , i};
+                maxi = nums[i-index];
+                x = i-index;
             }
 
-            if(abs(y.first-nums[i])>=value)
+            if(nums[i-index]<mini)
             {
-                cout << endl;
-                return {y.second , i};
+                mini = nums[i-index];
+                y = i-index;
+            }
+            
+            if(abs(maxi-nums[i])>=value)
+                return {x , i};
+
+            if(abs(mini-nums[i])>=value)
+            {
+                return {y , i};
             }
         }
         return {-1,-1};
