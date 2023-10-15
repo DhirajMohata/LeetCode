@@ -25,7 +25,6 @@ public:
                 return {y.second , i};
             }
         }
-        cout << endl;
         return {-1,-1};
     }
 };
