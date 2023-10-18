@@ -17,11 +17,6 @@ public:
         for(int i=0; i<nums.size(); i++)
             swap(nums[i][0],nums[i][1]);
 
-        for(int i=0; i<nums.size(); i++)
-        {
-            dp[nums[i][1]-1] = max(dp[nums[i][1]-1] , dp[nums[i][0]-1] + time[nums[i][1]-1]);
-        }
-
         for(int i=nums.size()-1; i>=0; i--)
         {
             dp[nums[i][1]-1] = max(dp[nums[i][1]-1] , dp[nums[i][0]-1] + time[nums[i][1]-1]);
