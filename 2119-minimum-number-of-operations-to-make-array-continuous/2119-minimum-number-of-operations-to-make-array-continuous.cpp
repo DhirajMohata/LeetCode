@@ -18,22 +18,19 @@ public:
             }
         }
 
-        int ans = 0;
+        int ans = 0 , i , j;
 
         for(int k=0; k<nums.size(); k++)
         {
-            int x = nums[k];
-            int y = k;
-
-            int i = k , j = nums.size()-1;
+            i = k ;
+            j = nums.size()-1;
 
             while(i<=j)
             {
                 int mid = i + (j-i)/2;
 
-                if( nums[mid]-x <= nu.size()-1)
+                if( nums[mid] - nums[k] <= nu.size()-1)
                 {
-                    y = mid;
                     i = mid + 1;
                 }
                 else
@@ -42,7 +39,7 @@ public:
                 }
             }
 
-            ans = max(ans , y-k+1);
+            ans = max(ans , j-k+1);
         }
 
         return nu.size() - ans;
