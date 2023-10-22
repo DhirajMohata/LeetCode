@@ -65,21 +65,17 @@ public:
             mini = min(mini , val);
             temp.push_back(val);
         }
-        
-        int ans = INT_MAX;
-        for(int i=1; i<=mini + 1; i++)
+    
+        for(int i=mini+1; i>= 1; i--)
         {
             int te = ispossible(i , temp);
 
             if(te != -1)
             {
-                ans = min(te,ans);
+                return te;
             }
         }
         
-        if(ans == INT_MAX)
-            return -1;
-        
-        return ans;
+        return -1;
     }
 };
