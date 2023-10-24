@@ -15,22 +15,23 @@ public:
     {
         queue<TreeNode*> s;
         vector<int> ans;
+        int x , temp;
 
         if(root != NULL)
             s.push(root);
 
         while(!s.empty())
         {
-            int x = s.size();
-            int temp = INT_MIN;
+            x = s.size();
+            temp = INT_MIN;
             while(x--)
             {
                 TreeNode* te = s.front();   
+                s.pop();
                 if(te->left != NULL) s.push(te->left);
                 if(te->right != NULL) s.push(te->right);
 
                 temp = max(temp , te->val);
-                s.pop();
             }
             ans.push_back(temp);
         } 
