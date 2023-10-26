@@ -3,8 +3,10 @@ public:
     int numFactoredBinaryTrees(vector<int>& arr) 
     {
         sort(arr.begin(),arr.end());
-        vector<long long> dp(arr.size() , 1);
-        unordered_map<int,int> m;
+        unordered_map<int,long long> m;
+
+        for(auto it : arr)
+            m[it] = 1;
 
         for(int i=0; i<arr.size(); i++)
         {
@@ -15,17 +17,16 @@ public:
                 if(arr[i]%j == 0 && m[j] >= 1 && m[y] >= 1)
                 {
                     if(j!=y)
-                        dp[i] += 2 * dp[m[j]-1] * dp[m[y]-1];
+                        m[arr[i]] += 2 * m[j] * m[y];
                     else
-                        dp[i] += dp[m[j]-1] * dp[m[y]-1];
+                        m[arr[i]] += m[j] * m[y];
                 }
             }
-            m[arr[i]] = i + 1;
         }
 
         int ans = 0;
-        
-        for(auto it : dp)
+
+        for(auto [key,it] : m)
             ans = (ans + it)%1000000007;
 
         return ans;
